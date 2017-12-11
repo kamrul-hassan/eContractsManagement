@@ -1,23 +1,25 @@
+with (helper) {
 	
-	var currentBo = Get("BusinessObject");
-	var callBoGuid = currentBo.CreateParams.ExtendedProperties["fromguid"];
-	var callBO = ResurrectBusinessObject(callBoGuid, ".bo");
+	var alignmentId = EnvironmentVariables.Instance.GetValue(bo.CreateParams.UserToken, "@ALIGNMENT_ID");
+	var dateToday = EffectiveDateHelper.Now(bo.CreateParams.UserToken);
+	var userToken = CdlIPhoneSettings.SessionData.UserToken;
 	
-	var alignmentId = callBO.Data.GetValue("event/alignment_id");
-	var dateToday = EffectiveDateHelper.Now(currentBo.CreateParams.UserToken);
-	
-	var serverCallInit = Get("ServerCall");
-	var tblDocData = JsonDeserializeTable(serverCallInit.Parameter);
+		var currentBo = CdlIPhoneSettings.Organizer.BusinessObject;
+		var callBoGuid = currentBo.CreateParams.ExtendedProperties["fromguid"];
+		var callBO = Dendrite.Framework.BOAccessHelper.ResurrectBusinessObject(callBoGuid, ".bo");
+		
+	var DocData = Control.WebView.EvaluateJavascript("getOfflineParameter('saveData')");
+	var tblDocData = JsonDeserializeTable(DocData);
 	
 		var cust_Id = callBO.Data.GetValue("customer/customer_id");
 		var cust_Name=callBO.Data.GetValue("customer/name");
 		var eventID = callBO.Data.GetValue("event/event_id");
-			
+		
 		var eventTbl = callBO.Data.get_Item("event").Table;
         var eventRow = eventTbl.Rows[0];
 		var tableED = callBO.Data.get_Item("dynamic__7888500000206232").Table;
 		var eventattch=callBO.Data.get_Item("event_attachment").Table;
-
+				
 		var finalPDF_id;
 		var pdf_file;
 		var cip_code;
@@ -89,14 +91,15 @@
 				}
 			//}
 		}
+		
 		// To store document attachment to database
 		
 		var newRowEA = eventattch.NewRow();
+		
 		var fields = pdf_file.split(';');
 		var type=fields[0];
 		var split_colon=type.split(":");
-		var file_type=split_colon[1];
-		
+		var file_type=split_colon[1];		
 		var doc_file=fields[1].split(",");
 		var documentFile=doc_file[1];
 		
@@ -105,17 +108,18 @@
 		newRowEA["ATTACHMENT_DATE"] = dateToday;
 		newRowEA["CREATE_DATE"] = dateToday;
 		newRowEA["DOCUMENT_TYPE"] = file_type;
-		//newRowEA["FILE_NAME"] = cust_Name+"_"+finalPDF_id +"_"+dateToday.ToString("ddMMyyyy")+"_"+"vsignée"+ ".pdf";
 		newRowEA["FILE_NAME"] = cust_Name+"_"+cip_code+"_"+finalPDF_id +"_"+dateToday.ToString("ddMMyyyy")+"_"+"vsignée"+ ".pdf";
 		newRowEA["DOCUMENT_FILE"] = Convert.FromBase64String(documentFile);
 		newRowEA.SetParentRow(eventRow);
 		newRowEA.EndEdit();
-		eventattch.Rows.Add(newRowEA);		
-		
+		eventattch.Rows.Add(newRowEA);	
 		
 		SaveBusinessObject(callBO, callBoGuid, ".bo");
 		
 		var value = 0;
-		var serverCall = Get("ServerCall");
-		serverCall.Result = value;
+		Control.WebView.EvaluateJavascript("performOfflineScriptCallback('saveData', '" + value + "')");
+}
+
+	
+	
 

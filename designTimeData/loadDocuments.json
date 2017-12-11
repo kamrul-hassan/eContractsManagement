@@ -1,0 +1,59 @@
+{
+	"documents": [
+		{
+			"DOCUMENT_ID": 7002249000064547,
+			"REF_ID": "CONVENTION-PREUVE",
+			"DOCUMENT_NAME": "Convention de Preuve",
+			"DESCRIPTION": null,
+			"FILE_NAME": "CONVENTION_PREUVE.pdf",
+			"VERSION": 1,
+			"PUBLISH_DATE": "08/12/2017",
+			"RK": 1.0,
+			"LAST_SIGNED_DATE": " "
+		},
+		{
+			"DOCUMENT_ID": 7002249000060036,
+			"REF_ID": "PART-2017",
+			"DOCUMENT_NAME": "Formulaire Partenariat Pharmacie 2017",
+			"DESCRIPTION": null,
+			"FILE_NAME": "Contrats de partenariat 2017 - A.pdf",
+			"VERSION": 2,
+			"PUBLISH_DATE": "01/12/2017",
+			"RK": 1.0,
+			"LAST_SIGNED_DATE": " "
+		},
+		{
+			"DOCUMENT_ID": 7002249000064346,
+			"REF_ID": "PSN-CPV-A-2018",
+			"DOCUMENT_NAME": "Contrat CPV A  2018",
+			"DESCRIPTION": null,
+			"FILE_NAME": "5608-403 BLE Contrats Parten Gallia 2018_A_FU5.pdf",
+			"VERSION": 1,
+			"PUBLISH_DATE": "07/12/2017",
+			"RK": 1.0,
+			"LAST_SIGNED_DATE": " "
+		},
+		{
+			"DOCUMENT_ID": 7002249000064605,
+			"REF_ID": "PSN-CPV-B-2018",
+			"DOCUMENT_NAME": "Contrat CPV-B 2018",
+			"DESCRIPTION": null,
+			"FILE_NAME": "5608-403 BLE Contrats Parten Gallia 2018_B_FU5.pdf",
+			"VERSION": 1,
+			"PUBLISH_DATE": "08/12/2017",
+			"RK": 1.0,
+			"LAST_SIGNED_DATE": " "
+		},
+		{
+			"DOCUMENT_ID": 7002249000064576,
+			"REF_ID": "PSN-CPV-C-2018",
+			"DOCUMENT_NAME": "Contrat CPV-C 2018",
+			"DESCRIPTION": null,
+			"FILE_NAME": "5608-403 BLE Contrats Parten Gallia 2018_C_FU5.pdf",
+			"VERSION": 1,
+			"PUBLISH_DATE": "08/12/2017",
+			"RK": 1.0,
+			"LAST_SIGNED_DATE": " "
+		}
+	]
+}
